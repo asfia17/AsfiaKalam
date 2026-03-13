@@ -24,6 +24,12 @@
 
 ---
 
+## 🧠 LeetCode Stats
+
+![LeetCode Stats](https://leetcard.jacoblin.cool/Asfia17?theme=dark&font=Baloo)
+
+---
+
 ## 💻 Most Used Languages
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=asfia17&layout=compact&theme=radical)
 
