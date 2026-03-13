@@ -24,9 +24,11 @@
 
 ---
 
-## 🧠 LeetCode Stats
+## 🧠 LeetCode
 
-![LeetCode Stats](https://leetcard.jacoblin.cool/Asfia17?theme=dark&font=Baloo)
+![LeetCode Stats](https://leetcard.jacoblin.cool/asfia17?theme=dark&font=Baloo)
+
+![LeetCode Badge](https://img.shields.io/badge/dynamic/json?color=orange&label=LeetCode%20Solved&query=totalSolved&url=https://leetcode-stats-api.herokuapp.com/asfia17)
 
 ---
 
