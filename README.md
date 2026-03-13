@@ -32,3 +32,6 @@
 ## 📌 Projects
 - Multiple Data Compression & Encryption System
 - DSA Practice
+
+## 🐍 Contribution Snake
+![Snake animation](https://github.com/asfia17/AsfiaKalam/blob/output/github-contribution-grid-snake.svg)  
