@@ -1,172 +1,60 @@
-// ================================
-// MOBILE MENU
-// ================================
+// ========================================
+// SMOOTH SCROLL
+// ========================================
 
-const menuToggle =
-  document.getElementById("menu-toggle");
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
-const navLinks =
-  document.getElementById("nav-links");
+  link.addEventListener("click", function (event) {
 
+    const targetId = this.getAttribute("href");
 
-if (menuToggle && navLinks) {
-
-  menuToggle.addEventListener("click", () => {
-
-    navLinks.classList.toggle("show");
-
-    if (navLinks.classList.contains("show")) {
-
-      menuToggle.textContent = "✕";
-
-    } else {
-
-      menuToggle.textContent = "☰";
-
+    if (targetId === "#") {
+      return;
     }
+
+    const target = document.querySelector(targetId);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
 
   });
 
-
-  document
-    .querySelectorAll(".nav-links a")
-    .forEach((link) => {
-
-      link.addEventListener("click", () => {
-
-        navLinks.classList.remove("show");
-
-        menuToggle.textContent = "☰";
-
-      });
-
-    });
-
-}
+});
 
 
-// ================================
-// TYPING EFFECT
-// ================================
+// ========================================
+// ACTIVE NAVIGATION
+// ========================================
 
-const typingText =
-  document.getElementById("typing-text");
-
-
-const roles = [
-  "Python Developer",
-  "Web Developer",
-  "Backend Developer",
-  "AI/ML Enthusiast"
-];
-
-
-let roleIndex = 0;
-
-let characterIndex = 0;
-
-let deleting = false;
-
-
-function typeEffect() {
-
-  if (!typingText) return;
-
-  const currentRole =
-    roles[roleIndex];
-
-
-  if (!deleting) {
-
-    typingText.textContent =
-      currentRole.substring(
-        0,
-        characterIndex + 1
-      );
-
-    characterIndex++;
-
-
-    if (
-      characterIndex ===
-      currentRole.length
-    ) {
-
-      deleting = true;
-
-      setTimeout(
-        typeEffect,
-        1500
-      );
-
-      return;
-
-    }
-
-  } else {
-
-    typingText.textContent =
-      currentRole.substring(
-        0,
-        characterIndex - 1
-      );
-
-    characterIndex--;
-
-
-    if (characterIndex === 0) {
-
-      deleting = false;
-
-      roleIndex =
-        (roleIndex + 1) %
-        roles.length;
-
-    }
-
-  }
-
-
-  setTimeout(
-    typeEffect,
-    deleting ? 60 : 100
-  );
-
-}
-
-
-typeEffect();
-
-
-// ================================
-// ACTIVE NAVBAR
-// ================================
-
-const sections =
-  document.querySelectorAll(
-    "main section"
-  );
-
+const sections = document.querySelectorAll("main section");
 
 const navigationLinks =
-  document.querySelectorAll(
-    ".nav-links a"
-  );
+  document.querySelectorAll(".nav-links a");
 
 
 function updateActiveNavigation() {
 
   let currentSection = "";
 
-
   sections.forEach((section) => {
 
     const sectionTop =
-      section.offsetTop - 150;
+      section.offsetTop - 180;
 
+    const sectionBottom =
+      sectionTop + section.offsetHeight;
 
     if (
-      window.scrollY >= sectionTop
+      window.scrollY >= sectionTop &&
+      window.scrollY < sectionBottom
     ) {
 
       currentSection =
@@ -180,7 +68,6 @@ function updateActiveNavigation() {
   navigationLinks.forEach((link) => {
 
     link.classList.remove("active");
-
 
     if (
       link.getAttribute("href") ===
@@ -202,55 +89,24 @@ window.addEventListener(
 );
 
 
-updateActiveNavigation();
+window.addEventListener(
+  "load",
+  updateActiveNavigation
+);
 
 
-// ================================
-// BACK TO TOP
-// ================================
+// ========================================
+// PROJECT CARD INTERACTION
+// ========================================
 
-const backToTop =
-  document.getElementById(
-    "back-to-top"
-  );
+document.querySelectorAll(".project-card").forEach((card) => {
 
+  card.addEventListener("mouseenter", () => {
+    card.style.transform = "translateY(-6px)";
+  });
 
-if (backToTop) {
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "translateY(0)";
+  });
 
-  window.addEventListener(
-    "scroll",
-    () => {
-
-      if (
-        window.scrollY > 500
-      ) {
-
-        backToTop.classList.add(
-          "show"
-        );
-
-      } else {
-
-        backToTop.classList.remove(
-          "show"
-        );
-
-      }
-
-    }
-  );
-
-
-  backToTop.addEventListener(
-    "click",
-    () => {
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
-  );
-
-}
+});
